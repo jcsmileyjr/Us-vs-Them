@@ -1,4 +1,84 @@
-<div  class= "col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    <h2>Stats Page</h2>
+<div class= "col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+    <!--Page title -->
+    <h2 class="centerAlign">Stats Page</h2>
+    
+    <!--#####Possible make col-sm a 4 instead of a 12 ****************-->
+    
+    <!--Player Profile section: left column on desktop, top row on mobile -->
+    <div class= "col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <!-- Section title -->        
+        <h3 class="centerAlign">Player Profile</h3>
+        <!-- Display current player's jersey's number -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Jersey Number
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            {{jerseyNumber}}
+        </div>
+        <!-- Display current player's team name -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Team Name
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            {{teamName}}
+        </div>
+        <!-- Display fitness challenge current week number -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Current Week
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            {{currentWeek}}
+        </div> 
+    </div> <!-- End of Player Profile section -->
+    
+    <!--Player Stats section: center column on desktop, middle row on mobile -->
+    <div class= "col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <h3 class="centerAlign">Player Stats</h3>
+        <!-- Display current player's Today's Total -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Today's Total
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            {{todayTotal}}
+        </div>
+        <!-- Display current player's Game Total Points -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Game Total Points
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            {{playerTotalPoints}}
+        </div>
+        <!-- Display current player's team rank -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Player's Team rank
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            {{playerTeamRank}}
+        </div>
+        <!-- Display current player's game rank -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Player's Game rank
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            {{playerGameRank}}
+        </div>         
+    </div>
+    
+    <!--Player Profile section: right column on desktop, top row on mobile -->
+    <div class= "col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <h3 class="centerAlign">Team Ranking</h3>
+        <div class="row" ng-repeat="x in teams | orderBy:'-teamTotalPoints'">
+            <div class= "col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                {{$index + 1}}
+            </div>
+            <div class= "col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                {{x.teamName}}
+            </div>   
+            <div class= "col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                {{x.teamTotalPoints}}
+            </div>                       
+        </div><!-- End of team ranking div -->
+     
+    </div>    
 
 </div>

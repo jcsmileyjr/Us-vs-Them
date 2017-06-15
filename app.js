@@ -15,7 +15,8 @@ myApp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $u
         })
         .state('stats', {
             url: '/stats',
-            templateUrl: 'views/stats.html'
+            templateUrl: 'views/stats.html',
+            controller: "statsController"
         })
      
     

@@ -6,10 +6,10 @@
 <link rel="stylesheet" href="libs/bootstrap-theme.min.css">
 <script src="libs/bootstrap.min.js"></script>
 <script src="libs/angular.min.js"></script>
-<script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
-    
+<script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>    
 <link rel="stylesheet" type="text/css" href="uvt.css"/>
-<script src="app.js"></script> 
+<script src="app.js"></script>
+<script src="statsController.js"></script>  
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/> 
 <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1" charset="utf-8">    
 <title>Us vs Them Fitness Challenge App</title>
@@ -45,17 +45,17 @@
 </nav>   
 <div class="container-fluid">
     <div class="row">
-        <div class="hidden-xs hidden-sm col-md-3 col-lg-3"></div><!--end of left main column  -->
+        <div class="hidden-xs hidden-sm col-md-2 col-lg-2"></div><!--end of left main column  -->
                 
             <!-- Start of page viewport-->
-        <div ui-view></div>
-            <!--End of page viewport -->
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" ui-view></div>
+            <!--End of page viewport, center column -->
         
-        <div class="hidden-xs hidden-sm col-md-3 col-lg-3 "></div><!--end of right main column-->
+        <div class="hidden-xs hidden-sm col-md-2 col-lg-2 "></div><!--end of right main column-->
     </div><!--end of row that contains the body -->
     <footer>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 centerAlign">
-            <p>Developed by JC Smiley</p>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h5 class="centerAlign">Developed by JC Smiley</h5>
         </div>
     </footer>
 </div><!--end of container of the row that contains the body -->
