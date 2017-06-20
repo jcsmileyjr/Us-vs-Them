@@ -1,16 +1,32 @@
-myApp.controller('statsController',function($scope){
+
+myApp.controller('statsController', ["$scope", "Team", "Players","CurrentWeek", function($scope, Team, Players, CurrentWeek){
     
-    $scope.teams = [{"teamName":"Globe Trotters", "teamTotalPoints": 500}, {"teamName":"Almost Retire", "teamTotalPoints": 650}, {"teamName":"Bad Boys and Girls", "teamTotalPoints": 900}, {"teamName":"Cookie Cutters", "teamTotalPoints": 325}, {"teamName":"Rolling Stones", "teamTotalPoints": 875} ];
+    /*use the Team service method to get the teams array*/
+    $scope.teams = Team.getTeams();
+
+    /*use the Players service method to update the shared currentPlayer object (in the service) based on the log-in jerseyNumber enter*/
+    Players.updateCurrentPlayer();
     
-    /* player profile section*/
-    $scope.jerseyNumber = 5;
-    $scope.teamName = "Globe Trotters";
-    $scope.currentWeek = 2;
+    /*use the Players service method to retrieved the shared currentPlayer object into the scope variable. */
+    $scope.currentPlayer = Players.getCurrentPlayer();
+    
+
+    /* player profile section*/    
+    /* use the scope's currentPlayer variable to get the jerseyNumber*/
+    $scope.jerseyNumber = $scope.currentPlayer.jerseyNumber;
+    
+    /* use the scope's currentPlayer variable to get the team's name*/
+    $scope.teamName = $scope.currentPlayer.teamName;
+    
+    /* use the CurrentWeek service to get the current week*/
+    $scope.currentWeek = CurrentWeek.getCurrentWeekNumber();
     
     /* player stats section*/
+    /*TEMP SETUP: get's today total points from the input page*/
     $scope.todayTotal = 45;
-    $scope.playerTotalPoints = 200;
+    /* use the scope's currentPlayer variable to get the playerTotalPoints*/
+    $scope.playerTotalPoints = $scope.currentPlayer.playerTotalPoint;
     $scope.playerTeamRank = 2;
     $scope.playerGameRank = 10;
     
-});
+}]);

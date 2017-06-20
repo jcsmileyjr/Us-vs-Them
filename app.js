@@ -22,5 +22,4 @@ myApp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $u
     
 }]);
 
-myApp.controller('mainController', function($scope){
-});
+
