@@ -1,5 +1,5 @@
 
-myApp.controller('statsController', ["$scope", "Team", "Players","CurrentWeek", function($scope, Team, Players, CurrentWeek){
+myApp.controller('statsController', ["$scope", "Team", "Players","CurrentWeek", "TodayTotal", function($scope, Team, Players, CurrentWeek, TodayTotal){
     
     /*use the Team service method to get the teams array*/
     $scope.teams = Team.getTeams();
@@ -23,10 +23,10 @@ myApp.controller('statsController', ["$scope", "Team", "Players","CurrentWeek", 
     
     /* player stats section*/
     /*TEMP SETUP: get's today total points from the input page*/
-    $scope.todayTotal = 45;
+    $scope.todayTotal = TodayTotal.getTodayTotal();
     /* use the scope's currentPlayer variable to get the playerTotalPoints*/
     $scope.playerTotalPoints = $scope.currentPlayer.playerTotalPoint;
-    $scope.playerTeamRank = 2;
-    $scope.playerGameRank = 10;
+    $scope.playerTeamRank = Players.getPlayerTeamRank();
+    $scope.playerGameRank = Players.getPlayerGameRank();
     
 }]);
