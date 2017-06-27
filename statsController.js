@@ -1,4 +1,3 @@
-
 myApp.controller('statsController', ["$scope", "Team", "Players","CurrentWeek", "TodayTotal", function($scope, Team, Players, CurrentWeek, TodayTotal){
     
     /*use the Team service method to get the teams array*/
@@ -28,5 +27,7 @@ myApp.controller('statsController', ["$scope", "Team", "Players","CurrentWeek", 
     $scope.playerTotalPoints = $scope.currentPlayer.playerTotalPoint;
     $scope.playerTeamRank = Players.getPlayerTeamRank();
     $scope.playerGameRank = Players.getPlayerGameRank();
+    
+    $scope.word = "Hello";
     
 }]);

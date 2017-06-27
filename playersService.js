@@ -1,7 +1,8 @@
+/*service that creates, returns, updates a teams array of objects and a currentPlayer object. There is a method to get the team ranking and game ranking of the currentPlayer*/
+myApp.factory('Players', function(TodayTotal){
 
-myApp.factory('Players', function(){
-
-    var players = [{"jerseyNumber":"7", "teamName": "Globe Trotters", "playerTotalPoint":"240", "playerName":"Nick Cage"}, {"jerseyNumber":"1", "teamName": "Globe Trotters", "playerTotalPoint":"200", "playerName":"Bob Dylan"}, {"jerseyNumber":"2", "teamName": "Almost Retire", "playerTotalPoint":"250", "playerName":"Dole White"}, {"jerseyNumber":"3", "teamName": "Bad Boys and Girls", "playerTotalPoint":"85", "playerName":"Bertha Sings"}, {"jerseyNumber":"4", "teamName": "Cookie Cutters", "playerTotalPoint":"280", "playerName":"Mary Beth Loy"}, {"jerseyNumber":"5", "teamName": "Rolling Stones", "playerTotalPoint":"390", "playerName":"Nate Shorts"}, {"jerseyNumber":"6", "teamName": "Globe Trotters", "playerTotalPoint":"220", "playerName":"Pink Panther"}];
+    /*array of player objects*/
+    var players = [{"jerseyNumber":7, "teamName": "Globe Trotters", "playerTotalPoint":240, "playerName":"Nick Cage"}, {"jerseyNumber":1, "teamName": "Globe Trotters", "playerTotalPoint":200, "playerName":"Bob Dylan"}, {"jerseyNumber":2, "teamName": "Almost Retire", "playerTotalPoint":250, "playerName":"Dole White"}, {"jerseyNumber":3, "teamName": "Bad Boys and Girls", "playerTotalPoint":85, "playerName":"Bertha Sings"}, {"jerseyNumber":4, "teamName": "Cookie Cutters", "playerTotalPoint":280, "playerName":"Mary Beth Loy"}, {"jerseyNumber":5, "teamName": "Rolling Stones", "playerTotalPoint":390, "playerName":"Nate Shorts"}, {"jerseyNumber":6, "teamName": "Globe Trotters", "playerTotalPoint":220, "playerName":"Pink Panther"}];
     
     var currentPlayer = {};
     
@@ -69,7 +70,25 @@ myApp.factory('Players', function(){
                     return players.indexOf(players[j]) + 1 ;
             }/*End of if statement*/
             }/*End of j's for loop*/             
-        }/*End of getPlayerGameRank function*/
+        },/*End of getPlayerGameRank function*/
+        
+        /*use the TodayTotal service to get the current player today's total. This amount is added to the current player playerTotalPoints porperty. The players array is then updated*/
+        updatePlayerTotalPoints: function(){
+            /*retreied todayTotal amount from TotayTotal service*/
+            var currentTotal = TodayTotal.getTodayTotal();
+            
+            /*find the currentPlayer the players array and add the currentTotal variable to the currentPlayer's playerTotalPoint*/
+            for(var i=0; i<players.length;i++){
+                /*match the jersetyNumber from log-In a jerseyNumber in the players array*/
+                if(currentPlayer.jerseyNumber==players[i].jerseyNumber){
+                
+                /*If a match is found, the currentTotal is added the matching player playerTotatPoint property. */      
+                players[i].playerTotalPoint += currentTotal;
+                return;
+                }/*End of if statement*/
+            }/*End of for loop*/
+            
+        }
     }/*End of Players Factory object return*/
     
     
