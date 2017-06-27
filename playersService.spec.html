@@ -1,0 +1,234 @@
+<html>
+  <head>
+    <!-- Jasmine References -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine-html.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/boot.min.js"></script>
+    
+    <!-- Angular and Angular Mock references -->
+    <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular.min.js"></script>
+    <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular-mocks.js"></script>
+
+  </head>
+  <body></body>
+  <script type="text/javascript">
+    
+    /*identify the following service as a angular object.*/  
+    var myApp = angular.module('UvT', []);      
+    
+    /*service that creates, returns, updates a teams array of objects and a currentPlayer object. There is a method to get the team ranking and game ranking of the currentPlayer*/
+    myApp.factory('Players', function(TodayTotal){
+
+        /*array of player objects*/
+        var players = [{"jerseyNumber":7, "teamName": "Globe Trotters", "playerTotalPoint":240, "playerName":"Nick Cage"}, {"jerseyNumber":1, "teamName": "Globe Trotters", "playerTotalPoint":200, "playerName":"Bob Dylan"}, {"jerseyNumber":2, "teamName": "Almost Retire", "playerTotalPoint":250, "playerName":"Dole White"}, {"jerseyNumber":3, "teamName": "Bad Boys and Girls", "playerTotalPoint":85, "playerName":"Bertha Sings"}, {"jerseyNumber":4, "teamName": "Cookie Cutters", "playerTotalPoint":280, "playerName":"Mary Beth Loy"}, {"jerseyNumber":5, "teamName": "Rolling Stones", "playerTotalPoint":390, "playerName":"Nate Shorts"}, {"jerseyNumber":6, "teamName": "Globe Trotters", "playerTotalPoint":220, "playerName":"Pink Panther"}];
+
+        var currentPlayer = {};
+
+        var jerseyNumber = 1;
+
+        return {
+            /*function to retrieve the players array object*/
+            getPlayers: function(){
+                return players;
+            },
+
+            /* function to update the currentPlayer shared object with the jerseyNumber retreived at log-in*/
+            updateCurrentPlayer: function(){
+
+                var newPlayers = players;
+                for(var i=0; i<newPlayers.length;i++){
+                    /*match the jersetyNumber from log-In a jerseyNumber in the players array*/
+                    if(jerseyNumber==newPlayers[i].jerseyNumber){
+                    /*If a match is found, the current player object is transfer into the currentPlayer object*/    
+                    currentPlayer = newPlayers[i];
+                    return currentPlayer;
+                    }/*End of if statement*/
+                }/*End of for loop*/
+            },/*End of updateCurrentPlayer*/         
+
+            /*function to retreive the currentPlayer object*/        
+            getCurrentPlayer: function(){            
+                return currentPlayer;
+            },/*End of getCurrentPlayer function*/
+
+            /*a method that gets all the team members of the current player from the players array to find the current rank of the current player compared to other team members.*/
+            getPlayerTeamRank: function(){
+                /*create an array to hold team members of the currentPlayer object*/
+                var playersOnTeam = [];
+                /*use a for loop in the players array to place all players objects matching the teamName of the currentPlayer object into a playersOnTeam array of objects.*/
+                for(var i=0;i<players.length;i++){
+                    if(players[i].teamName == currentPlayer.teamName){
+                        playersOnTeam.push(players[i]);
+                    }/*End of if statement*/
+                }/*End of for loop*/
+
+                /*decending sort the playersOnTeam array, based on the playerTotalPoint property, using a array.sort compare method.*/
+                playersOnTeam.sort(function(a, b){
+                    return b.playerTotalPoint - a.playerTotalPoint;
+                });
+
+                /*use a for loop to search the sorted playersOnTeam array for the jerseyNumber of the currentPlayer object. If found, return the array.indexOf to get the current index plus 1 to get the rank. */
+                for(var j=0;j<playersOnTeam.length;j++){
+                    if(currentPlayer.jerseyNumber == playersOnTeam[j].jerseyNumber){
+                        return playersOnTeam.indexOf(playersOnTeam[j]) + 1;
+                }/*End of if statement*/
+                }/*End of j's for loop*/ 
+            },/*End of getPlayerTeamRank method*/
+
+            /*a method that gets the current rank of the current player compared to all players in the game.*/        
+            getPlayerGameRank: function(){
+                /*decending sort the players array, based on the playerTotalPoint property, using a array.sort compare method.*/
+                players.sort(function(a, b){
+                    return b.playerTotalPoint - a.playerTotalPoint;
+                })/* End of sort*/
+
+                /*use a for loop to search the sorted players array for the jerseyNumber of the currentPlayer object. If found, return the array.indexOf to get the current index plus 1 to get the rank. */
+                for(var j=0;j<players.length;j++){
+                    if(currentPlayer.jerseyNumber == players[j].jerseyNumber){
+                        return players.indexOf(players[j]) + 1 ;
+                }/*End of if statement*/
+                }/*End of j's for loop*/             
+            },/*End of getPlayerGameRank function*/
+
+            /*use the TodayTotal service to get the current player today's total. This amount is added to the current player playerTotalPoints porperty. The players array is then updated*/
+            updatePlayerTotalPoints: function(){
+                /*retreied todayTotal amount from TotayTotal service*/
+                var currentTotal = TodayTotal.getTodayTotal();
+
+                /*find the currentPlayer the players array and add the currentTotal variable to the currentPlayer's playerTotalPoint*/
+                for(var i=0; i<players.length;i++){
+                    /*match the jersetyNumber from log-In a jerseyNumber in the players array*/
+                    if(currentPlayer.jerseyNumber==players[i].jerseyNumber){
+                    /*If a match is found, the currentTotal is added the matching player playerTotatPoint property. */    
+                    players[i].playerTotalPoint += currentTotal;
+                    return;
+                    }/*End of if statement*/
+                }/*End of for loop*/
+            
+        }
+        }/*End of Players Factory object return*/
+    });
+      
+      
+    /*Service to add curent players total points today, save information as a object, and return this information to to player service*/
+    myApp.factory('TodayTotal', function(){
+
+        /*object to hold currrent player today's total*/
+        var todayTotal = {"currentTotal":45};
+
+            return {
+                /*function to retrieve and return the todayTotal object curentTotal property */
+                getTodayTotal: function(){
+                    return todayTotal.currentTotal;
+                }
+            }
+    });      
+    
+    /* Test Code */
+describe("Players Sevice:", function() {
+    var Players;
+    var TodayTotal;
+    beforeEach(module('UvT'));
+    beforeEach(inject(function(_Players_, _TodayTotal_ ) {        
+        /*setup the Players service*/
+        Players = _Players_;
+        
+        /*setup the TodayTotal service*/
+        TodayTotal = _TodayTotal_;
+    }));
+        
+    it('The getPlayers function retrieves an array of objects', function(){
+        /*uses the Players service's getPlayers method to return the players array*/
+        var players = Players.getPlayers();
+        
+        /*use the typeOf function to determine if the varible is an object*/
+        expect(typeof players).toBe('object'); 
+    });
+
+    it('currentPlayer object can be updated with logged-in player jerseyNumber', function(){
+        /*setup jerseyNumber of mock logged-in player */
+        var jerseyNumber = 1;
+        
+        /*setup currentPlayer object */
+        var currentPlayer = {};
+        
+        /*update currentPlayer object */
+        currentPlayer = Players.updateCurrentPlayer();
+        
+        /*get the currentPlayer's playerName property equal Bob Dylan*/
+        expect(currentPlayer.playerName).toEqual("Bob Dylan");
+    });
+    
+    it('currentPlayer object can be retrieved', function(){
+        /*use the Players service method getCurrentPlayer to return currentPlayer object*/
+        var newPlayer = Players.getCurrentPlayer();
+        
+        /*use the typeOf function to determine if the varible is an object*/
+        expect(typeof newPlayer).toBe('object');
+    });
+    
+    it('team ranking of the currentPlayer is returned', function(){
+        /*setup jerseyNumber of mock logged-in player */
+        var jerseyNumber = 1;
+        
+        /*setup currentPlayer object */
+        var currentPlayer = {};
+        
+        /*update currentPlayer object */
+        currentPlayer = Players.updateCurrentPlayer();
+        
+        /*uses the Players service's getPlayerTeamRanks method to return the team rank of the currentPlayer (jerseyNumber 1)*/
+        var teamRank = Players.getPlayerTeamRank();
+        
+        /*test if teamRank is 3*/
+        expect(teamRank).toBe(3);
+    });
+    
+    it('game ranking of the currentPlayer is returned', function(){
+        /*setup jerseyNumber of mock logged-in player */
+        var jerseyNumber = 1;
+        
+        /*setup currentPlayer object */
+        var currentPlayer = {};
+        
+        /*update currentPlayer object */
+        currentPlayer = Players.updateCurrentPlayer();
+        
+        /*uses the Players service's getPlayerGameRanks method to return the game rank of the currentPlayer (jerseyNumber 1)*/
+        var gameRank = Players.getPlayerGameRank();
+        
+        /*test if teamRank is not 1*/
+        expect(gameRank).not.toBe(1);
+        expect(gameRank).toBe(6); 
+    });
+    
+    it('currentPlayer object peoperty playerTotalPoints can be updated', function(){
+        /*setup jerseyNumber of mock logged-in player */
+        var jerseyNumber = 1;
+        
+        /*setup currentPlayer object */
+        var currentPlayer = {};
+        
+        /*update currentPlayer object */
+        currentPlayer = Players.updateCurrentPlayer();
+        
+        /*uses the Players service's getPlayers method to return the players array*/
+        var players = Players.getPlayers();
+        
+        /*test to show original currentPlayer's playerTotalPoints is 200*/
+        expect(currentPlayer.playerTotalPoint).toBe(200);
+        
+        /*use the Players service method updatePlayerTotalPoints to update the players array*/
+        Players.updatePlayerTotalPoints();
+        
+        /*update currentPlayer object */
+        currentPlayer = Players.updateCurrentPlayer();        
+        
+        /*test to show currentPlayer object in the array has been updated by todayTotal. (the TodayToal service use a mock amount of 45.*/        
+        expect(currentPlayer.playerTotalPoint).toBe(245);
+        
+    });
+});
+  </script>
+</html>
