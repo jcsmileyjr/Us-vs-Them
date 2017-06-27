@@ -1,4 +1,4 @@
-<div  class= "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class= "col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h2>Log-In Page</h2>    
                 <form name="logInform" novalidate>
                     <!--Login Name input area -->
@@ -22,12 +22,11 @@
                         <input name="inputlogInpwd" type="password" ng-model="password" size="10" required>
                         <!--input field validation. Checking for if valid and if field been clicked on and left empty-->
                         <span ng-show="logInform.inputlogInpwd.$invalid && !logInform.inputlogInpwd.$pristine">Required!</span>
-                        <p>{{fail}}<p>
                         <br>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 centerAlign">
                     <!--submit new suspects button "disable" till valid validation-->
-                    <button type="submit" name="submit" ng-disabled="logInform.$invalid" class="btn btn-md" ng-click="logIn(userName, userPwd)">Submit Password</button>
+                    <button type="submit" name="submit" ng-disabled="logInform.$invalid" class="btn btn-md" ng-click="signIn(jerseyNumber, password)">Submit</button>
                     </div>
               
                 </form>

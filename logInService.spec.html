@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <!-- Jasmine References -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine-html.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/boot.min.js"></script>
+    
+    <!-- Angular and Angular Mock references -->
+    <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular.min.js"></script>
+    <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular-mocks.js"></script>
+
+  </head>
+  <body></body>
+  <script type="text/javascript">
+    
+    /*identify the following service as a angular object.*/  
+    var myApp = angular.module('UvT', []);      
+    
+/*service that checks against a database of log-In objects, returns jerseyNumber to playerService, and returns a yes/no to open app*/
+myApp.factory('LogIn', function(){
+
+    /*array of player log-in objects*/
+    var credentials = [{"jerseyNumber":1, "password": 1}, {"jerseyNumber":2, "password": 2}, {"jerseyNumber":3, "password": 3}, {"jerseyNumber":5, "password": 4}, {"jerseyNumber":5, "password": 5}, {"jerseyNumber":6, "password": 6}, {"jerseyNumber":7, "password": 7}];    
+    
+    var pass= "";
+    
+return {
+        /*function to update pass*/
+        updatePass: function(newPass){
+            pass= newPass;    
+        },
+            
+        /*function to return pass*/
+        getPass: function(){
+            return pass;
+        },
+        /*function to validate log-In page input against the credential array. */
+        logIn: function(jerseyNumber, password){
+            for(var i=0;i<credentials.length;i++){
+                
+                /*test if both parameters is validated against the current element in the credential array*/
+                if(jerseyNumber==credentials[i].jerseyNumber && password==credentials[i].password){
+                    
+                    /*Excluded Players service method to update the global jeresyNumber variable in the service*/ 
+                    
+                    /*returns a true which pass the logIn function*/
+                    return pass= true;
+                }
+            }/*End of for loop*/
+            
+            /*return a false which fails the logIn function*/
+            return pass = false;
+        }/*End of logIn function*/        
+    }/*End of LogIn Service return*/        
+}); 
+    
+    /* Test Code */
+describe("LogIn Sevice:", function() {
+    
+    var LogIn;
+    
+    beforeEach(module('UvT'));
+    
+    beforeEach(inject(function(_LogIn_) {        
+        /*setup the Log-In service*/
+        LogIn = _LogIn_;
+    }));
+    
+    it('if given a correct jerseyNumber and password, a "true" is return', function(){
+        var jerseyNumber = 1;
+        var password = 1;
+        
+        /*use the LogIn service method to return either true or false if the login matches a element in the credentials databases*/
+        var pass = LogIn.logIn(jerseyNumber, password);
+        
+        /*check if the pass variable is true */
+        expect(pass).toBe(true); 
+    });
+    
+    it('if given a incorrect jerseyNumber and password, a "false" is return', function(){
+        var jerseyNumber = 0;
+        var password = 0;
+        
+        /*use the LogIn service method to return either true or false if the login matches a element in the credentials databases*/
+        var pass = LogIn.logIn(jerseyNumber, password);
+        
+        /*check if the pass variable is false*/
+        expect(pass).toBe(false); 
+    });
+    
+    it('if given a correct jerseyNumber and incorrect password, a "false" is return', function(){
+        
+        var jerseyNumber = 1;
+        var password = 0;
+        
+        /*use the LogIn service method to return either true or false if the login matches a element in the credentials databases*/
+        var pass = LogIn.logIn(jerseyNumber, password);
+        
+        /*check if the pass variable is false*/
+        expect(pass).toBe(false); 
+    });
+    
+    it('if given a incorrect jerseyNumber and correct password, a "false" is return', function(){
+        
+        var jerseyNumber = 0;
+        var password = 1;
+        
+        /*use the LogIn service method to return either true or false if the login matches a element in the credentials databases*/
+        var pass = LogIn.logIn(jerseyNumber, password);
+        
+        /*check if the pass variable is false*/
+        expect(pass).toBe(false); 
+    });    
+
+
+});
+  </script>
+</html>

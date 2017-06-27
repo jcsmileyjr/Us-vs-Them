@@ -6,9 +6,19 @@ myApp.factory('Players', function(TodayTotal){
     
     var currentPlayer = {};
     
-    var jerseyNumber = 1;
+    var jerseyNumber = 0;
 
     return {
+        /*function to update jerseyNumber*/
+        updateJerseyNumber: function(newJerseyNumber){
+            jerseyNumber = newJerseyNumber;    
+        },
+            
+        /*function to return the jerseyNumber*/
+        getJerseyNumber: function(){
+            return jerseyNumber;
+        },
+        
         /*function to retrieve the players array object*/
         getPlayers: function(){
             return players;
