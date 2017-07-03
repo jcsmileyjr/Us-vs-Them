@@ -26,6 +26,9 @@ myApp.factory('LogIn', function($state, Players){
                     /*use a Players service method to update the global jeresyNumber variable in the service*/
                     Players.updateJerseyNumber(jerseyNumber);
                     
+                    /*use the Players service method to update the shared currentPlayer object (in the service) based on the log-in jerseyNumber enter*/
+                    Players.updateCurrentPlayer();                    
+                    
                     $state.go('input');
                     
                     /*returns a true which pass the logIn function*/

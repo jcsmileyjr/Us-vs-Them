@@ -12,7 +12,8 @@ myApp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $u
         })
         .state('input', {
             url:'/input',
-            templateUrl: 'views/input.html'
+            templateUrl: 'views/input.html',
+            controller: "inputController"
         })
         .state('stats', {
             url: '/stats',

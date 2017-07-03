@@ -1,4 +1,94 @@
 <div  class= "col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <h2>Player's Input Page</h2>
+    <h2 class="centerAlign">Player's Input Page</h2>
+    <!-- Player Information Section -->
+    <div class= "col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <h3 class="centerAlign">Player Information</h3>
+        <!-- Display current player's name -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Player's Name
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            {{playerName}}
+        </div>
+        <!-- Display current player's jersey's number -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Jersey Number
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            {{jerseyNumber}}
+        </div>
+        <!-- Display current player's team name -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Team Name
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            {{teamName}}
+        </div>   
+    </div> <!-- End of Player Information Section -->
+    
+    <!-- Player Input Section -->
+    <div class= "col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <h3 class="centerAlign">Input Today's Totals</h3>
+    <form name="inputForm" novalidate>
+        <!-- Display steps taken input box -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Number of Steps Taken
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <input name="inputSteps" type="number" ng-model="steps" size="10" required>
+            <!--input field validation. Checking for if valid and if field been clicked on and left empty-->
+            <span ng-show="inputForm.inputSteps.$invalid && !inputForm.inputSteps.$pristine">Required!</span>                  
+        </div> 
+        
+        <!-- Display water intake input box -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Cups of Water Intake
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <input name="inputWater" type="number" ng-model="water" size="10" required>
+            <!--input field validation. Checking for if valid and if field been clicked on and left empty-->
+            <span ng-show="inputForm.inputWater.$invalid && !inputForm.inputWater.$pristine">Required!</span>                  
+        </div>
+        <!-- Display vegetables eaten input box -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Serving of Vegetables Eaten
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <input name="inputVegetables" type="number" ng-model="vegetables" size="10" required>
+            <!--input field validation. Checking for if valid and if field been clicked on and left empty-->
+            <span ng-show="inputForm.inputVegetables.$invalid && !inputForm.inputVegetables.$pristine">Required!</span>                  
+        </div>
+        <!-- Display physical fitness minutes input box -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Physical Fitness Minutes
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <input name="inputPF" type="number" ng-model="physicalFitness" size="10" required>
+            <!--input field validation. Checking for if valid and if field been clicked on and left empty-->
+            <span ng-show="inputForm.inputPF.$invalid && !inputForm.inputPF.$pristine">Required!</span>                  
+        </div>
+    </form>
+    </div> <!-- End of Input Section -->
+    
+    <!-- Display Today's Total Points and submit button -->
+    <div class= "col-xs-12 col-sm-12 col-md-12 col-lg-12">       
+        <!-- Display total points -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <!-- Display total points label -->
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                Today's Total Points
+            </div>
+            <!-- Display total steps takened -->
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                {{((steps/2000)*10)+((water/2)*5)+(vegetables*5)+((physicalFitness/20)*10)}}
+            </div>            
+        </div>
+        
+        <!-- Display submit button -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 centerAlign">
+            <!--submit new suspects button "disable" till valid validation-->
+            <button type="submit" name="submit" ng-disabled="inputForm.$invalid" class="btn btn-md" ng-click="addStats(steps, water, vegetables, physicalFitness)">Submit</button>
+        </div>        
+    </div>    
 
 </div>

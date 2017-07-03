@@ -3,8 +3,8 @@ myApp.controller('statsController', ["$scope", "Team", "Players","CurrentWeek", 
     /*use the Team service method to get the teams array*/
     $scope.teams = Team.getTeams();
 
-    /*use the Players service method to update the shared currentPlayer object (in the service) based on the log-in jerseyNumber enter*/
-    Players.updateCurrentPlayer();
+    /*use the Players service method to update the shared currentPlayer object (in the service) based on the log-in jerseyNumber enter
+    Players.updateCurrentPlayer();*/
     
     /*use the Players service method to retrieved the shared currentPlayer object into the scope variable. */
     $scope.currentPlayer = Players.getCurrentPlayer();
@@ -21,11 +21,13 @@ myApp.controller('statsController', ["$scope", "Team", "Players","CurrentWeek", 
     $scope.currentWeek = CurrentWeek.getCurrentWeekNumber();
     
     /* player stats section*/
-    /*TEMP SETUP: get's today total points from the input page*/
+    /*Use the TodayTotal service to get today total points from the input page*/
     $scope.todayTotal = TodayTotal.getTodayTotal();
     /* use the scope's currentPlayer variable to get the playerTotalPoints*/
     $scope.playerTotalPoints = $scope.currentPlayer.playerTotalPoint;
+    /*use the Players service method to player's team rank. */
     $scope.playerTeamRank = Players.getPlayerTeamRank();
+    /*use the Players service method to player's game rank. */
     $scope.playerGameRank = Players.getPlayerGameRank();
     
     $scope.word = "Hello";
