@@ -23,13 +23,20 @@ myApp.controller('statsController', ["$scope", "Team", "Players","CurrentWeek", 
     /* player stats section*/
     /*Use the TodayTotal service to get today total points from the input page*/
     $scope.todayTotal = TodayTotal.getTodayTotal();
+    
     /* use the scope's currentPlayer variable to get the playerTotalPoints*/
     $scope.playerTotalPoints = $scope.currentPlayer.playerTotalPoint;
+    
     /*use the Players service method to player's team rank. */
     $scope.playerTeamRank = Players.getPlayerTeamRank();
+    
+     /* use the Players service method to calculate number of team mates on a team*/
+    $scope.numberOfTeamMembers = Players.getNumberOfTeamMembers();
+    
     /*use the Players service method to player's game rank. */
     $scope.playerGameRank = Players.getPlayerGameRank();
     
-    $scope.word = "Hello";
+    /* use the Players service method to calculate number of players in the game*/
+    $scope.numberOfGameMembers = Players.getNumberOfGameMembers();
     
 }]);

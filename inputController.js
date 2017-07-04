@@ -1,4 +1,4 @@
-myApp.controller('inputController', ["$scope", "Players","TodayTotal", function($scope, Players, TodayTotal){
+myApp.controller('inputController', ["$scope", "Players","TodayTotal","Team", function($scope, Players, TodayTotal, Team){
     
     /*use the Players service method to retrieved the shared currentPlayer object into the scope variable. */    
     $scope.currentPlayer = Players.getCurrentPlayer();
@@ -23,6 +23,8 @@ myApp.controller('inputController', ["$scope", "Players","TodayTotal", function(
         TodayTotal.addCurrentTotal(steps, water, vegetables, physicalFitness);
         
         Players.updatePlayerTotalPoints();
+        
+        Team.updateTeams();
     }
 
     

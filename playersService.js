@@ -2,7 +2,7 @@
 myApp.factory('Players', function(TodayTotal){
 
     /*array of player objects*/
-    var players = [{"jerseyNumber":7, "teamName": "Globe Trotters", "playerTotalPoint":240, "playerName":"Nick Cage"}, {"jerseyNumber":1, "teamName": "Globe Trotters", "playerTotalPoint":200, "playerName":"Bob Dylan"}, {"jerseyNumber":2, "teamName": "Almost Retire", "playerTotalPoint":250, "playerName":"Dole White"}, {"jerseyNumber":3, "teamName": "Bad Boys and Girls", "playerTotalPoint":85, "playerName":"Bertha Sings"}, {"jerseyNumber":4, "teamName": "Cookie Cutters", "playerTotalPoint":280, "playerName":"Mary Beth Loy"}, {"jerseyNumber":5, "teamName": "Rolling Stones", "playerTotalPoint":390, "playerName":"Nate Shorts"}, {"jerseyNumber":6, "teamName": "Globe Trotters", "playerTotalPoint":220, "playerName":"Pink Panther"}];
+    var players = [{"jerseyNumber":7, "teamName": "Globe Trotters", "playerTotalPoint":240, "playerName":"Nick Cage"}, {"jerseyNumber":1, "teamName": "Globe Trotters", "playerTotalPoint":200, "playerName":"Bob Dylan"}, {"jerseyNumber":2, "teamName": "Almost Retire", "playerTotalPoint":650, "playerName":"Dole White"}, {"jerseyNumber":3, "teamName": "Bad Boys and Girls", "playerTotalPoint":485, "playerName":"Bertha Sings"}, {"jerseyNumber":4, "teamName": "Cookie Cutters", "playerTotalPoint":680, "playerName":"Mary Beth Loy"}, {"jerseyNumber":5, "teamName": "Rolling Stones", "playerTotalPoint":790, "playerName":"Nate Shorts"}, {"jerseyNumber":6, "teamName": "Globe Trotters", "playerTotalPoint":220, "playerName":"Pink Panther"}];
     
     var currentPlayer = {};
     
@@ -66,6 +66,24 @@ myApp.factory('Players', function(TodayTotal){
             }/*End of if statement*/
             }/*End of j's for loop*/ 
         },/*End of getPlayerTeamRank method*/
+        
+        /*a method to calculate number of team mates on a team*/
+        getNumberOfTeamMembers: function(){
+            /*create an array to hold team members of the currentPlayer object*/
+            var playersOnTeam = [];
+            /*use a for loop in the players array to place all players objects matching the teamName of the currentPlayer object into a playersOnTeam array of objects.*/
+            for(var i=0;i<players.length;i++){
+                if(players[i].teamName == currentPlayer.teamName){
+                    playersOnTeam.push(players[i]);
+                }/*End of if statement*/
+            }/*End of for loop*/
+            return playersOnTeam.length;
+        },
+        
+        /*a method to calculate number of players in the game*/
+        getNumberOfGameMembers: function(){
+            return players.length;
+        },
         
         /*a method that gets the current rank of the current player compared to all players in the game.*/        
         getPlayerGameRank: function(){
