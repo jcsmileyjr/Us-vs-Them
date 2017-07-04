@@ -1,4 +1,6 @@
-Project primary colors are navy blue and orange. 
+Project primary colors are navy blue and orange.
+
+Project "take-action" colors are a mixing of navy blue and orange (possible red). 
 
 F1: app title
 F2: page title

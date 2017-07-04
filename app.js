@@ -13,7 +13,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $u
         .state('input', {
             url:'/input',
             templateUrl: 'views/input.html',
-            controller: "inputController"
+            controller: "inputController"        
         })
         .state('stats', {
             url: '/stats',
@@ -23,5 +23,23 @@ myApp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $u
      
     
 }]);
+
+myApp.run(function($transitions, Auth) {
+  $transitions.onStart({ to: 'input'}, function(trans) {
+    var auth = trans.injector().get('Auth');
+    if (Auth.getAuthenticate()==false) {
+      // User isn't authenticated. Redirect to a new Target State
+      return trans.router.stateService.target('logIn');
+    }
+  });
+    
+  $transitions.onStart({ to: 'stats'}, function(trans) {
+    var auth = trans.injector().get('Auth');
+    if (Auth.getAuthenticate()==false) {
+      // User isn't authenticated. Redirect to a new Target State
+      return trans.router.stateService.target('logIn');
+    }
+  });    
+})
 
 

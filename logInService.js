@@ -1,5 +1,5 @@
 /*service that checks against a database of log-In objects, returns jerseyNumber to playerService, and returns a yes/no to open app*/
-myApp.factory('LogIn', function($state, Players){
+myApp.factory('LogIn', function($state, Players, Auth){
 
     /*array of player log-in objects*/
     var credentials = [{"jerseyNumber":1, "password": 1}, {"jerseyNumber":2, "password": 2}, {"jerseyNumber":3, "password": 3}, {"jerseyNumber":5, "password": 4}, {"jerseyNumber":5, "password": 5}, {"jerseyNumber":6, "password": 6}, {"jerseyNumber":7, "password": 7}];    
@@ -29,6 +29,10 @@ myApp.factory('LogIn', function($state, Players){
                     /*use the Players service method to update the shared currentPlayer object (in the service) based on the log-in jerseyNumber enter*/
                     Players.updateCurrentPlayer();                    
                     
+                    /*Use the Auth service to update the authenticate object and allow state change*/
+                    Auth.updateAuthenticate();
+                    
+                    /*change the state from logIn to input*/
                     $state.go('input');
                     
                     /*returns a true which pass the logIn function*/
