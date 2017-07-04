@@ -12,6 +12,9 @@ myApp.controller('inputController', ["$scope", "Players","TodayTotal","Team", fu
     /* use the scope's currentPlayer variable to get the team's name*/    
     $scope.teamName = $scope.currentPlayer.teamName;
     
+    /*Get today's date to ue in the title*/
+    $scope.date = new Date();
+    
     $scope.steps = 0;
     $scope.water = 0;
     $scope.vegetables = 0;
