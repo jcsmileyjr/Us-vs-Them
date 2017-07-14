@@ -12,7 +12,12 @@ myApp.factory('Auth', function($state){
         
         getAuthenticate: function(){
             return authenticate.authenticated;
+        },
+        
+        logOutAuthenticate: function(){
+            authenticate.authenticated= false;
         }
+        
         
     }/*end of service return methods*/
 });

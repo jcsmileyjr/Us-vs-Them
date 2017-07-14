@@ -5,6 +5,7 @@ Project "take-action" colors are a mixing of navy blue and orange (possible red)
 F1: app title
 F2: page title
 F3: page section title
+f5: footer
 
 Main font color for html output, H2, H3, and labels: navy blue
 
@@ -16,4 +17,6 @@ In mobile view, all text is normal.
 
 In desktop view, all text is 150%.
 
-Submit buttons should be large size, background color navy, and text color darkorange. 
+Submit buttons should be large size, background color navy, and text color darkorange.
+
+Log-out link is red.

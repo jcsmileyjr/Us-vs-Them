@@ -20,7 +20,15 @@ myApp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $u
             templateUrl: 'views/stats.html',
             controller: "statsController"
         })
-     
+        .state('logOut', {
+            url: '/logOut',
+            templateUrl: '',
+            controller: function($state, Auth, TodayTotal){
+                TodayTotal.clearTodayTotal();
+                Auth.logOutAuthenticate();
+                $state.go('logIn');
+            }
+        })    
     
 }]);
 

@@ -22,6 +22,10 @@ myApp.factory('TodayTotal', function($state){
                 
                 
                 $state.go('stats');
+            },
+            
+            clearTodayTotal: function(){
+                todayTotal.currentTotal = 0;
             }
         }
 });

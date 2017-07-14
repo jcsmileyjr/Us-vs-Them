@@ -8,7 +8,7 @@
                         <label for="inputLogInName">Jersey Number</label>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <input name="inputlogInName" type="text" ng-model="jerseyNumber" size="10" required>
+                        <input name="inputlogInName" type="text" ng-model="jerseyNumber" size="10" required autofocus>
                         <!--input field validation. Checking for if valid and if field been clicked on and left empty-->
                         <span ng-show="logInform.inputlogInName.$invalid && !logInform.inputlogInName.$pristine">Required!</span>                  
                     </div>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                         <br>
-                        <input name="inputlogInpwd" type="password" ng-model="password" size="10" required autofocus>
+                        <input name="inputlogInpwd" type="password" ng-model="password" size="10" required>
                         <!--input field validation. Checking for if valid and if field been clicked on and left empty-->
                         <span ng-show="logInform.inputlogInpwd.$invalid && !logInform.inputlogInpwd.$pristine">Required!</span>
                         <br>
