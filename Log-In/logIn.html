@@ -1,0 +1,34 @@
+<div class= "row blue view largeFontSize">
+            <h2 class="centerAlign">Log-In Page</h2>    
+                <form name="logInform" novalidate>
+                    <!--Login Name input area -->
+                    <!--The message variable states log-in failure -->
+                    <br><br><p class="red">{{message}}</p>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rightAlign">
+                        <label for="inputLogInName">Jersey Number</label>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <input name="inputlogInName" type="text" ng-model="jerseyNumber" size="10" required autofocus>
+                        <!--input field validation. Checking for if valid and if field been clicked on and left empty-->
+                        <span ng-show="logInform.inputlogInName.$invalid && !logInform.inputlogInName.$pristine">Required!</span>                  
+                    </div>
+                    <!--Login password input area -->
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rightAlign">
+                        <br>
+                        <label for="inputLogInpwd">Password </label>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <br>
+                        <input name="inputlogInpwd" type="password" ng-model="password" size="10" required>
+                        <!--input field validation. Checking for if valid and if field been clicked on and left empty-->
+                        <span ng-show="logInform.inputlogInpwd.$invalid && !logInform.inputlogInpwd.$pristine">Required!</span>
+                        <br>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 centerAlign">
+                        <br>
+                        <!--submit new suspects button "disable" till valid validation-->
+                        <button type="submit" name="submit" ng-disabled="logInform.$invalid" class="btn btn-lg submitColor" ng-click="signIn(jerseyNumber, password)">Submit</button>
+                    </div>
+              
+                </form>
+</div><!--end of Log-in Page-->

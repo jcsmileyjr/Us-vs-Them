@@ -7,17 +7,17 @@ myApp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $u
     $stateProvider
         .state('logIn', {
             url:'/logIn',
-            templateUrl: 'views/logIn.html',
+            templateUrl: 'Log-In/logIn.html',
             controller: "logInController"
         })
         .state('input', {
             url:'/input',
-            templateUrl: 'views/input.html',
+            templateUrl: 'Input/input.html',
             controller: "inputController"        
         })
         .state('stats', {
             url: '/stats',
-            templateUrl: 'views/stats.html',
+            templateUrl: 'Stats/stats.html',
             controller: "statsController"
         })
         .state('logOut', {

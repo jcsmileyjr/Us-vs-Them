@@ -1,6 +1,4 @@
-myApp.controller('inputController', ["$scope", "Players","TodayTotal","Team", "Auth", function($scope, Players, TodayTotal, Team, Auth, $state){
-    
-    /*$scope.authenticated = Auth.getAuthenticate();*/
+myApp.controller('inputController', ["$scope", "Players","TodayTotal","Team", "Auth", function($scope, Players, TodayTotal, Team, $state){
     
     /*use the Players service method to retrieved the shared currentPlayer object into the scope variable. */    
     $scope.currentPlayer = Players.getCurrentPlayer();
