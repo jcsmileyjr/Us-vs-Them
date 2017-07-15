@@ -1,0 +1,70 @@
+/* right side align */
+.rightAlign {
+    text-align: right;   
+}
+
+/* left side align */
+.leftAlign {
+    text-align:left;   
+}
+
+/* center alignment*/
+.centerAlign {
+    text-align: center;
+}
+
+/*color red*/
+.red {
+    color: red;
+}
+
+/*color navy blue for "Them" title, all heading, and hard-coded output*/
+.blue,h2, h3 {
+    color: navy;
+}
+
+/*background color orange*/
+.orange {
+    background-color: darkorange;
+}
+
+/*color of submit buttons*/
+.submitColor {
+    color: darkorange;
+    font-weight:bolder;
+    background-color: navy;
+}
+
+/*underline team ranking titles*/
+.underline {
+    text-decoration-line: underline;
+}
+
+/*for a sticky footer you need this html, body, and footer sections*/
+.view, html {
+  position: relative;
+  min-height: 100%;
+}
+/*Creates a buffer zone between body and the footer*/
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 0px;
+}
+
+footer {
+  position: absolute;
+  bottom: 110;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 20px;
+}
+
+                    /*       Media Queries   */
+
+    /* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+    /* in mobile view, shrink App Title */ 
+    .largeFontSize {
+        font-size: 150%;
+    }
+}
