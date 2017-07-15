@@ -1,4 +1,4 @@
-                                   # Us vs Them
+                                   **Us vs Them**
 
 **What is it:**
 
@@ -24,7 +24,7 @@ A team vs team fitness challenge web app. Players compete by recording their ste
 1. Pretend you are player "Bob Dylan" with 200 points, third place on your team, and last place in the game. Log in using the jerseyNumber: 1 and password: 1. 
 2. You should now be on the "Input Today Stats" page. Its a simple user interface that allows a player to input four fitness categories (steps taken, water intake, vegetables servings eaten, and minutes spent in active physical training).
 3. Type in 22,000 steps, 18 cups of water, 5 serving of vegetables, and 60 minutes of fitness minutes. A score of 210 points is formulated based on points awarded for each fitness category. Press the submit button. 
-4. You are redirected to the "Player Stats" page that displays your profile information,  today's points, and  a new game total of 410 points. You are now first place on your team and fifth place in the game. You can see that your team is rank number one in the team ranking section. 
+4. You are redirected to the "Player Stats" page that displays your profile information,  today's points, and  a accumulated total of 410 points. You are now first place on your team and fifth place in the game. You can see that your team is rank number one in the team ranking section. 
 5. Press the red Log-Out button at the bottom of the screen.
 
 Demo Link:  https://jcsmileyjr.github.io/Us-vs-Them/

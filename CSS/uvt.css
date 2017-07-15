@@ -48,12 +48,12 @@
 /*Creates a buffer zone between body and the footer*/
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 0px;
+  margin-bottom: 30px;
 }
 
 footer {
   position: absolute;
-  bottom: 110;
+  bottom: 10;/*sets the height of the footer*/
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 20px;
